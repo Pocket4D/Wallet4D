@@ -1,4 +1,4 @@
-package com.example.wallet4d
+package com.pocket4d.wallet4d
 
 import io.flutter.embedding.android.FlutterActivity
 
