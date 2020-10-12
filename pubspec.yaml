@@ -25,6 +25,37 @@ dependencies:
     sdk: flutter
   pocket4d:
     path: ../pocket4d/pocket4d
+  # connectivity
+  connectivity: ^0.4.9+3
+  # substrate signer
+  substrate_sign_flutter: ^0.1.1
+  # utils
+  flustars: ^0.3.3
+  # kv storage
+  shared_preferences: ^0.5.12
+  # screen util
+  flutter_screenutil: ^3.1.1
+
+  # localizations
+  flutter_localizations:
+    sdk: flutter
+  # i18n
+  i18n_extension: ^1.4.5
+  # encrypt lib
+  encrypt: ^4.0.3
+
+  # barcode
+  barcode_scan: ^3.0.1
+
+  # qr image generator
+  qr_flutter: ^3.2.0
+
+  # swiper
+  flutter_swiper: ^1.1.6
+
+  # google fonts
+
+  google_fonts: ^1.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -71,6 +102,18 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
+  assets:
+    - fonts/
+    - assets/
+  fonts:
+    - family: Farrington
+      fonts:
+        - asset: fonts/Farrington-7B.ttf
+    - family: IconFont
+      fonts:
+        - asset: fonts/IconFont.ttf
+    - family: AntdIcons
+      fonts:
+        - asset: fonts/AntdIcons.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
