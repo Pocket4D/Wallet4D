@@ -110,3 +110,5 @@ class SubstrateChainName {
   static const String reserved46 = 'reserved46'; // 46
   static const String reserved47 = 'reserved47'; // 47
 }
+
+// phala:wss://poc2.phala.network/ws
