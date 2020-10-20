@@ -8,17 +8,17 @@ import 'jh_encrypt_util.dart';
 class JhStorageUtils {
   //存 String
   static Future<bool> saveString(String key, String value) {
-    key = JhEncryptUtils.aesEncrypt(key, kWalletDefaultPsw);
-    value = JhEncryptUtils.aesEncrypt(value, kWalletDefaultPsw);
+    key = JhEncryptUtils.aesEncrypt(key, kWalletDefaultEncryptKey);
+    value = JhEncryptUtils.aesEncrypt(value, kWalletDefaultEncryptKey);
     return SpUtil.putString(key, value);
   }
 
   //取 String
   static String getStringWithKey(String key) {
-    key = JhEncryptUtils.aesEncrypt(key, kWalletDefaultPsw);
+    key = JhEncryptUtils.aesEncrypt(key, kWalletDefaultEncryptKey);
     var enValue = SpUtil.getString(key);
     if (enValue.length > 0) {
-      return JhEncryptUtils.aesDecrypt(enValue, kWalletDefaultPsw);
+      return JhEncryptUtils.aesDecrypt(enValue, kWalletDefaultEncryptKey);
     }
     return enValue;
   }
@@ -75,7 +75,7 @@ class JhStorageUtils {
 
   //移除
   static Future<bool> removeWithKey(String key) {
-    key = JhEncryptUtils.aesEncrypt(key, kWalletDefaultPsw);
+    key = JhEncryptUtils.aesEncrypt(key, kWalletDefaultEncryptKey);
     return SpUtil.remove(key);
   }
 }
@@ -128,8 +128,8 @@ class JhStorageNoAESUtils {
   }
 
   //取 Model
-  static Map getModelWithKey(String key) {
-    Map<String, dynamic> json = SpUtil.getObject(key);
+  static Map<String, dynamic> getModelWithKey(String key) {
+    Map<String, dynamic> json = Map<String, dynamic>.from(SpUtil.getObject(key));
     return json;
   }
 

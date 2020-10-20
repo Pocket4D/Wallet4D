@@ -64,7 +64,7 @@ class DefaultActivity : Activity(), PageNotifyListener {
                     loadingView.visibility = View.GONE
 
                     finish()
-                }, 2500)
+                }, 3000)
             }
         }.start()
 

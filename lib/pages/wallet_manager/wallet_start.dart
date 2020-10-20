@@ -11,9 +11,10 @@ import 'package:wallet4d/utils/k_gaps_util.dart';
 import 'wallet_start.i18n.dart';
 
 class WalletStartPage extends StatefulWidget {
-  WalletStartPage({Key key, this.title, this.name}) : super(key: key);
+  WalletStartPage({Key key, this.title, this.name, this.params}) : super(key: key);
   final String title;
   final String name;
+  final dynamic params;
   @override
   _WalletStartPageState createState() => _WalletStartPageState();
 }
@@ -45,12 +46,14 @@ class _WalletStartPageState extends State<WalletStartPage> with PageWithOverlay 
               KGaps.vGap8,
               primaryButton(
                   buttonText: "Create a new wallet".i18n,
-                  onPressed: () => ThrioNavigator.push(url: "/wallet/terms"),
+                  onPressed: () =>
+                      ThrioNavigator.push(url: "/wallet/terms", params: {"type": "create"}),
                   contextWidth: contextWidth),
               KGaps.vGap8,
               textButton(
                   buttonText: "I already have a wallet".i18n,
-                  onPressed: () => null,
+                  onPressed: () =>
+                      ThrioNavigator.push(url: "/wallet/terms", params: {"type": "import"}),
                   contextWidth: contextWidth),
               KGaps.vGap8,
             ],

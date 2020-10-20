@@ -1,6 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:thrio/thrio.dart';
+import 'package:wallet4d/pages/home/app.dart';
 import 'package:wallet4d/pages/index/page.dart';
+import 'package:wallet4d/pages/misc/privacy_policy.dart';
+import 'package:wallet4d/pages/misc/qr_page_2.dart';
+import 'package:wallet4d/pages/misc/term_of_service.dart';
+import 'package:wallet4d/pages/wallet_manager/wallet_create.dart';
+import 'package:wallet4d/pages/wallet_manager/wallet_import.dart';
 import 'package:wallet4d/pages/wallet_manager/wallet_legal_notice.dart';
 import 'package:wallet4d/pages/wallet_manager/wallet_start.dart';
 // import 'package:wallet4d/pages/my_homepage/page.dart';
@@ -21,6 +27,8 @@ class Module
         return IndexPage(
           key: Key("indexPage"),
           title: "IndexPage",
+          params: settings.params,
+          name: "/wallet/notify",
         );
       },
     );
@@ -32,6 +40,8 @@ class Module
         return WalletStartPage(
           key: Key("walletStartPage"),
           title: "WalletStartPage",
+          params: settings.params,
+          name: "/wallet/notify",
         );
       },
     );
@@ -43,10 +53,80 @@ class Module
           key: Key("walletLegalNoticePage"),
           title: "WalletLegalNoticePage",
           params: settings.params,
-          name: "WalletLegalNoticePage",
+          name: "/wallet/terms/notify",
         );
       },
     );
+    registerPageBuilder(
+      '/wallet/create',
+      (settings) {
+        // var params = Map<String, dynamic>.from(settings.params);
+        return WalletCreatePage(
+          key: Key("walletCreatePage"),
+          title: "walletCreatePage",
+          params: settings.params,
+          name: "/wallet/create/notify",
+        );
+      },
+    );
+    registerPageBuilder(
+      '/wallet/import',
+      (settings) {
+        // var params = Map<String, dynamic>.from(settings.params);
+        return WalletImportPage(
+          key: Key("walletImportPage"),
+          title: "walletImportPage",
+          params: settings.params,
+          name: "/wallet/import/notify",
+        );
+      },
+    );
+    registerPageBuilder(
+      '/privacy_policy',
+      (settings) {
+        // var params = Map<String, dynamic>.from(settings.params);
+        return PrivacyPolicyPage(
+          key: Key("privacyPolicyPage"),
+          title: "privacyPolicyPage",
+          params: settings.params,
+          name: "/privacy_policy/notify",
+        );
+      },
+    );
+
+    registerPageBuilder(
+      '/term_of_service',
+      (settings) {
+        // var params = Map<String, dynamic>.from(settings.params);
+        return TermOfServicePage(
+          key: Key("termOfServicePage"),
+          title: "termOfServicePage",
+          params: settings.params,
+          name: "/term_of_service/notify",
+        );
+      },
+    );
+
+    registerPageBuilder(
+      '/home',
+      (settings) {
+        // var params = Map<String, dynamic>.from(settings.params);
+        return HomeApp(
+          key: Key("homeApp"),
+          params: settings.params,
+          name: "/homeApp/notify",
+        );
+      },
+    );
+
+    registerPageBuilder('/qrPage', (settings) {
+      return QRPage(
+        key: Key('prPage'),
+        title: "prPage",
+        params: settings.params,
+        name: "/prPage/notify",
+      );
+    });
   }
 
   @override

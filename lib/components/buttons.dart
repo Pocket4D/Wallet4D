@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wallet4d/utils/k_dimens_util.dart';
 import 'package:wallet4d/utils/k_theme_util.dart';
 
-Widget primaryButton({String buttonText, void Function() onPressed, double contextWidth}) {
+Widget primaryButton(
+    {String buttonText, void Function() onPressed, double contextWidth, bool disable = false}) {
   return Container(
       height: 48,
       padding: EdgeInsets.only(left: KDimens.gap_dp16, right: KDimens.gap_dp16),
@@ -11,13 +12,15 @@ Widget primaryButton({String buttonText, void Function() onPressed, double conte
           child: FlatButton(
             textTheme: ButtonTextTheme.primary,
             color: KColor.kWeiXinThemeColor,
+            disabledColor: KColor.kTextGrayColor,
+            disabledTextColor: KColor.kWeiXinTextColor,
             child: Text(buttonText,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.roboto(
                     fontStyle: FontStyle.normal,
                     textStyle:
                         TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w700))),
-            onPressed: onPressed,
+            onPressed: disable == true ? null : onPressed,
           ),
           width: contextWidth));
 }

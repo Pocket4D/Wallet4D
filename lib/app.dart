@@ -8,8 +8,11 @@ import 'package:dva_dart/dva_dart.dart';
 import 'package:dva_flutter/dva_flutter.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:pocket4d/store.dart';
-import 'package:thrio/thrio.dart';
+import 'package:pocket4d/pocket4d.dart' hide store;
+import 'package:wallet4d/components/NavigatorHome.dart';
+import 'package:wallet4d/store.dart';
+import 'package:thrio/thrio.dart' hide NavigatorHome;
+import 'package:wallet4d/services/wallet_service.dart';
 import 'package:wallet4d/utils/k_localization_util.dart';
 import 'package:wallet4d/utils/k_theme_util.dart';
 import 'package:i18n_extension/i18n_widget.dart';
@@ -19,10 +22,12 @@ import 'routes/module.dart' as routes;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SpUtil.getInstance();
+  WalletService();
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
+  P4DEngine.start();
   runApp(GlobalStore());
   if (Platform.isAndroid) {
     SystemUiOverlayStyle systemUiOverlayStyle =
@@ -84,7 +89,7 @@ class _MainAppState extends State<MainApp> with ThrioModule {
 
   @override
   void onModuleInit() {
-    navigatorLogging = true;
+    // navigatorLogging = true;
   }
 
   @override

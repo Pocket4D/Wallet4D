@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wallet4d/components/antdIcons.dart';
+import 'package:thrio/thrio.dart';
 import 'package:wallet4d/components/buttons.dart';
 import 'package:wallet4d/components/common_list_item.dart';
 import 'package:wallet4d/pages/base_scaffold.dart';
@@ -18,6 +18,24 @@ class WalletLegalNoticePage extends StatefulWidget {
 }
 
 class _WalletLegalNoticePageState extends State<WalletLegalNoticePage> {
+  String _nextPageType = "create";
+
+  @override
+  void initState() {
+    print("initState of /wallet/terms");
+    extractParams();
+    super.initState();
+  }
+
+  extractParams() {
+    if (widget.params != null) {
+      var received = Map<String, dynamic>.from(widget.params);
+      setState(() {
+        _nextPageType = received["type"];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -25,7 +43,12 @@ class _WalletLegalNoticePageState extends State<WalletLegalNoticePage> {
       name: widget.name,
       params: widget.params,
       pageBody: buildPageBody(context),
+      onPageNotify: onPageNotify,
     );
+  }
+
+  void onPageNotify(params) async {
+    print("onPageNotify ${widget.name} params :$params");
   }
 
   Widget buildPageBody(BuildContext context) {
@@ -68,12 +91,36 @@ class _WalletLegalNoticePageState extends State<WalletLegalNoticePage> {
             ),
             Column(
               children: [
-                commonListItem(null, "Term of Service".i18n, () => print("ontap term of service")),
-                commonListItem(null, "Privacy Policy".i18n, () => print("ontap privacy policy")),
+                commonListItem(
+                    null,
+                    "Term of Service".i18n,
+                    () => ThrioNavigator.push(
+                          url: '/term_of_service',
+                        )),
+                commonListItem(
+                    null,
+                    "Privacy Policy".i18n,
+                    () => ThrioNavigator.push(
+                          url: '/privacy_policy',
+                        )),
                 KGaps.vGap16,
                 primaryButton(
                     buttonText: "Accept and continue".i18n,
-                    onPressed: () => (print("Accept button tapped")),
+                    onPressed: () {
+                      print("Accept button tapped");
+                      print("_nextPageType : $_nextPageType");
+                      if (_nextPageType == "create") {
+                        ThrioNavigator.push(
+                          url: '/wallet/create',
+                          params: {"from": "/wallet/terms"},
+                        );
+                      } else if (_nextPageType == "import") {
+                        ThrioNavigator.push(
+                          url: '/wallet/import',
+                          params: {"from": "/wallet/terms"},
+                        );
+                      }
+                    },
                     contextWidth: contextWidth),
                 KGaps.vGap16,
               ],
