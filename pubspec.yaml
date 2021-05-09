@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  webview_flutter: ^2.0.4
+
 flutter:
   uses-material-design: true
 
