@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'pages/home_page.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const WalletApp());
   if (Platform.isAndroid) {
     WebView.platform = SurfaceAndroidWebView();
   }
@@ -14,44 +16,15 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class WalletApp extends StatelessWidget {
+  const WalletApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Wallet4D',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {}
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Wallet4D')),
-      body: WebView(
-        initialUrl: 'https://github.com/Pocket4D/Wallet4D',
-        javascriptMode: JavascriptMode.unrestricted,
-        gestureNavigationEnabled: true,
-        onProgress: (int progress) => print(progress),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      home: const HomePage(),
     );
   }
 }
