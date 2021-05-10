@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'constants/routes.dart';
 import 'pages/home_page.dart';
 
 void main() {
@@ -25,6 +26,7 @@ class WalletApp extends StatelessWidget {
       title: 'Wallet4D',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const HomePage(),
+      routes: routes,
     );
   }
 }
