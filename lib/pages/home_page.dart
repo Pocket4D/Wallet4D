@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../constants/screens.dart';
 import '../extensions/extensions.dart';
+import '../widgets/gaps.dart';
+import 'scan_page.dart';
 import 'web_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _scan() {}
+  void _scan() {
+    Navigator.of(context).pushNamed(ScanPage.routeName);
+  }
 
   Widget _urlField(BuildContext context) {
     return Container(
@@ -67,23 +71,54 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget _scanButton(BuildContext context) {
+    return MaterialButton(
+      onPressed: _scan,
+      color: context.theme.primaryColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: const <Widget>[
+          Icon(Icons.qr_code_scanner, color: Colors.white),
+          Gap(10),
+          Text(
+            'Scan to connect',
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Wallet4D'), centerTitle: true),
       backgroundColor: context.theme.cardColor,
-      body: Column(
+      body: Stack(
+        fit: StackFit.expand,
         children: <Widget>[
-          _urlField(context),
-          Expanded(child: _dAppGrid(context)),
+          Positioned.fill(
+            child: Column(
+              children: <Widget>[
+                _urlField(context),
+                Expanded(child: _dAppGrid(context)),
+              ],
+            ),
+          ),
+          PositionedDirectional(
+            start: 0,
+            end: 0,
+            bottom: context.bottomPadding + 20,
+            child: Align(
+              alignment: Alignment.center,
+              child: _scanButton(context),
+            ),
+          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _scan,
-        tooltip: 'Scan',
-        child: const Icon(Icons.qr_code_scanner),
-      ),
       endDrawer: Container(width: Screens.width * 0.8, color: Colors.white),
+      resizeToAvoidBottomInset: false,
     );
   }
 }

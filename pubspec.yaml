@@ -11,6 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  qr_code_scanner:
+    git:
+      url: https://github.com/Pocket4D/qr_code_scanner
+      ref: grab-fixes
   webview_flutter: ^2.0.4
 
 flutter:
