@@ -27,11 +27,11 @@ class _ScanPageState extends State<ScanPage> {
 
   void _initializeController(QRViewController qrViewController) {
     _controller = qrViewController;
-    controller.scannedDataStream.listen((Barcode result) async {
+    controller.scannedDataStream.listen((result) async {
       result.code.logD();
       if (WebPage.linkRegExp.hasMatch(result.code)) {
         await controller.pauseCamera();
-        final String _url = WebPage.linkRegExp.allMatches(result.code).first.group(0).toString();
+        final _url = WebPage.linkRegExp.allMatches(result.code).first.group(0).toString();
         Navigator.of(context).pushNamed(
           WebPage.routeName,
           arguments: WebPageArguments(url: _url),

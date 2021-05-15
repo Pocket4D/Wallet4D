@@ -21,7 +21,7 @@
 analyzer:
   strong-mode:
     implicit-casts: false
-    implicit-dynamic: false
+    implicit-dynamic: true
   errors:
     # treat missing required parameters as a warning (not a hint)
     missing_required_param: warning
@@ -39,9 +39,8 @@ analyzer:
     # Turned off until null-safe rollout is complete.
     unnecessary_null_comparison: ignore
   exclude:
-    - "bin/cache/**"
     # Ignore protoc generated files
-    - "dev/tools/lib/proto/*"
+    - 'lib/src/**/*.g.dart'
 
 linter:
   rules:
@@ -52,10 +51,10 @@ linter:
     - always_put_control_body_on_new_line
     # - always_put_required_named_parameters_first # we prefer having parameters in the same order as fields https://github.com/flutter/flutter/issues/10219
     - always_require_non_null_named_parameters
-    - always_specify_types
+    # - always_specify_types
     # - always_use_package_imports # we do this commonly
     - annotate_overrides
-    # - avoid_annotating_with_dynamic # conflicts with always_specify_types
+    - avoid_annotating_with_dynamic # conflicts with always_specify_types
     - avoid_bool_literals_in_conditional_expressions
     # - avoid_catches_without_on_clauses # we do this commonly
     # - avoid_catching_errors # we do this commonly
@@ -72,14 +71,14 @@ linter:
     # - avoid_js_rounded_ints # only useful when targeting JS runtime
     - avoid_null_checks_in_equality_operators
     # - avoid_positional_boolean_parameters # not yet tested
-    # - avoid_print # not yet tested
+    - avoid_print
     # - avoid_private_typedef_functions # we prefer having typedef (discussion in https://github.com/flutter/flutter/pull/16356)
-    # - avoid_redundant_argument_values # not yet tested
+    - avoid_redundant_argument_values
     - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
     - avoid_return_types_on_setters
     # - avoid_returning_null # there are plenty of valid reasons to return null
-    # - avoid_returning_null_for_future # not yet tested
+    - avoid_returning_null_for_future
     - avoid_returning_null_for_void
     # - avoid_returning_this # there are plenty of valid reasons to return this
     # - avoid_setters_without_getters # not yet tested
@@ -88,7 +87,7 @@ linter:
     - avoid_slow_async_io
     - avoid_type_to_string
     - avoid_types_as_parameter_names
-    # - avoid_types_on_closure_parameters # conflicts with always_specify_types
+    - avoid_types_on_closure_parameters # conflicts with always_specify_types
     - avoid_unnecessary_containers
     - avoid_unused_constructor_parameters
     - avoid_void_async
@@ -97,7 +96,7 @@ linter:
     - camel_case_extensions
     - camel_case_types
     - cancel_subscriptions
-    # - cascade_invocations # not yet tested
+    - cascade_invocations
     - cast_nullable_to_non_nullable
     # - close_sinks # not reliable enough
     # - comment_references # blocked on https://github.com/dart-lang/linter/issues/1142
@@ -133,7 +132,7 @@ linter:
     - non_constant_identifier_names
     - null_check_on_nullable_type_parameter
     - null_closures
-    # - omit_local_variable_types # opposite of always_specify_types
+    - omit_local_variable_types # opposite of always_specify_types
     # - one_member_abstracts # too many false positives
     # - only_throw_errors # https://github.com/flutter/flutter/issues/5792
     - overridden_fields
@@ -150,7 +149,7 @@ linter:
     - prefer_const_constructors_in_immutables
     - prefer_const_declarations
     - prefer_const_literals_to_create_immutables
-    # - prefer_constructors_over_static_methods # far too many false positives
+    - prefer_constructors_over_static_methods # far too many false positives
     - prefer_contains
     # - prefer_double_quotes # opposite of prefer_single_quotes
     - prefer_equal_for_default_values
@@ -174,7 +173,7 @@ linter:
     - prefer_iterable_whereType
     # - prefer_mixin # https://github.com/dart-lang/language/issues/32
     - prefer_null_aware_operators
-    # - prefer_relative_imports # incompatible with sub-package imports
+    - prefer_relative_imports # incompatible with sub-package imports
     - prefer_single_quotes
     - prefer_spread_collections
     - prefer_typing_uninitialized_variables
@@ -186,7 +185,7 @@ linter:
     - slash_for_doc_comments
     # - sort_child_properties_last # not yet tested
     - sort_constructors_first
-    # - sort_pub_dependencies # prevents separating pinned transitive dependencies
+    - sort_pub_dependencies # prevents separating pinned transitive dependencies
     - sort_unnamed_constructors_first
     - test_types_in_equals
     - throw_in_finally

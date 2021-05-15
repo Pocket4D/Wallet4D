@@ -8,6 +8,6 @@ extension NullableIterableExtension on Iterable<dynamic>? {
 
 extension MapExtension on Map<dynamic, dynamic> {
   void removeAllEmptyEntry() => removeWhere(
-        (dynamic k, dynamic v) => k == null || v == null || v == '',
+        (k, v) => k == null || v == null || v == '',
       );
 }

@@ -52,7 +52,7 @@ class _WebPageState extends State<WebPage> {
 
   void _onPageChanged(String url) {
     _url.value = url;
-    _controller?.getTitle().then((String? title) => _title.value = title ?? _title.value);
+    _controller?.getTitle().then((title) => _title.value = title ?? _title.value);
   }
 
   void _updateProgress(int progress) {
@@ -68,7 +68,7 @@ class _WebPageState extends State<WebPage> {
   Widget _progressBar(BuildContext context) {
     return ValueListenableBuilder<int?>(
       valueListenable: _progress,
-      builder: (_, int? progress, __) => AnimatedSwitcher(
+      builder: (_, progress, __) => AnimatedSwitcher(
         duration: kThemeAnimationDuration,
         child: progress != null
             ? LinearProgressIndicator(
@@ -90,7 +90,7 @@ class _WebPageState extends State<WebPage> {
       onPageStarted: _onPageChanged,
       onPageFinished: _onPageChanged,
       onProgress: _updateProgress,
-      onWebViewCreated: (WebViewController controller) => _controller = controller,
+      onWebViewCreated: (controller) => _controller = controller,
     );
     if (_arguments.withProgressBar) {
       child = Stack(
@@ -111,7 +111,7 @@ class _WebPageState extends State<WebPage> {
         appBar: AppBar(
           title: ValueListenableBuilder<String>(
             valueListenable: _title,
-            builder: (_, String title, __) => Text(title),
+            builder: (_, title, __) => Text(title),
           ),
           actions: <Widget>[
             IconButton(

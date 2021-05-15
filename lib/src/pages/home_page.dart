@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         style: context.textTheme.caption?.copyWith(fontSize: 14),
         textAlign: TextAlign.center,
         keyboardType: TextInputType.url,
-        onSubmitted: (String url) {
+        onSubmitted: (url) {
           if (!WebPage.linkRegExp.hasMatch(url)) {
             return;
           }
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         crossAxisCount: 4,
       ),
       itemCount: 12,
-      itemBuilder: (BuildContext c, int index) => Padding(
+      itemBuilder: (_, index) => Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
           children: <Widget>[
@@ -112,7 +112,6 @@ class _HomePageState extends State<HomePage> {
             end: 0,
             bottom: context.bottomPadding + 20,
             child: Align(
-              alignment: Alignment.center,
               child: _scanButton(context),
             ),
           ),

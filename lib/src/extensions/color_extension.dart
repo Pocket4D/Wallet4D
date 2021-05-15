@@ -5,7 +5,7 @@ extension ColorExtension on Color {
 
   MaterialColor get swatch {
     return Colors.primaries.firstWhere(
-      (Color c) => c.value == value,
+      (c) => c.value == value,
       orElse: () => _swatch,
     );
   }
@@ -27,7 +27,5 @@ extension ColorExtension on Color {
 
   MaterialColor get _swatch => MaterialColor(value, getMaterialColorValues);
 
-  Color _swatchShade(int swatchValue) => HSLColor.fromColor(this)
-      .withLightness(1 - (swatchValue / 1000))
-      .toColor();
+  Color _swatchShade(int swatchValue) => HSLColor.fromColor(this).withLightness(1 - (swatchValue / 1000)).toColor();
 }

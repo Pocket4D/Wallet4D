@@ -26,7 +26,7 @@ void _log(
   StackTrace? stackTrace, {
   bool isError = false,
 }) {
-  final DateTime _time = DateTime.now();
+  final _time = DateTime.now();
   _dev.log(
     '$_time - ${isError ? 'An error occurred.' : message}',
     time: _time,

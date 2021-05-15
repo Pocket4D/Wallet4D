@@ -6,14 +6,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'constants/routes.dart';
-import 'extensions/extensions.dart';
-import 'pages/home_page.dart';
+import 'src/constants/routes.dart';
+import 'src/extensions/extensions.dart';
+import 'src/pages/home_page.dart';
 
 void main() {
   runZonedGuarded(
     () => runApp(const WalletApp()),
-    (Object error, StackTrace stackTrace) {
+    (error, stackTrace) {
       'Error caught in runZonedGuarded: $error'.logE(stackTrace: stackTrace);
     },
   );
