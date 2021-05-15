@@ -24,14 +24,15 @@ class _HomePageState extends State<HomePage> {
       alignment: Alignment.center,
       color: context.theme.dividerColor.withOpacity(0.1),
       child: TextField(
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
           isDense: true,
-          hintText: 'Enter website',
+          hintText: context.localizations.enterWebsite,
         ),
         style: context.textTheme.caption?.copyWith(fontSize: 14),
         textAlign: TextAlign.center,
+        keyboardType: TextInputType.url,
         onSubmitted: (String url) {
           if (!WebPage.linkRegExp.hasMatch(url)) {
             return;
@@ -78,12 +79,12 @@ class _HomePageState extends State<HomePage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: const <Widget>[
-          Icon(Icons.qr_code_scanner, color: Colors.white),
-          Gap(10),
+        children: <Widget>[
+          const Icon(Icons.qr_code_scanner, color: Colors.white),
+          const Gap(10),
           Text(
-            'Scan to connect',
-            style: TextStyle(color: Colors.white),
+            context.localizations.scanToConnect,
+            style: const TextStyle(color: Colors.white),
           ),
         ],
       ),
@@ -93,7 +94,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Wallet4D'), centerTitle: true),
+      appBar: AppBar(title: Text(context.localizations.wallet4D), centerTitle: true),
       backgroundColor: context.theme.cardColor,
       body: Stack(
         fit: StackFit.expand,

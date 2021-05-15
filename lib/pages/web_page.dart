@@ -6,7 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class WebPage extends StatefulWidget {
   const WebPage({Key? key}) : super(key: key);
 
-  static const String routeName = 'wallet4d://web-page';
+  static const String routeName = 'wallet4d://web';
 
   static final RegExp linkRegExp = RegExp(
     r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\'
@@ -32,13 +32,11 @@ class WebPageArguments {
 }
 
 class _WebPageState extends State<WebPage> {
-  late final WebPageArguments _arguments =
-      ModalRoute.of(context)!.settings.arguments! as WebPageArguments;
+  late final WebPageArguments _arguments = ModalRoute.of(context)!.settings.arguments! as WebPageArguments;
 
   final ValueNotifier<int?> _progress = ValueNotifier<int?>(0);
   late final ValueNotifier<String> _url = ValueNotifier<String>(_arguments.url);
-  late final ValueNotifier<String> _title =
-      ValueNotifier<String>(_arguments.title);
+  late final ValueNotifier<String> _title = ValueNotifier<String>(_arguments.title);
 
   WebViewController? _controller;
   Timer? _progressTimer;
@@ -54,9 +52,7 @@ class _WebPageState extends State<WebPage> {
 
   void _onPageChanged(String url) {
     _url.value = url;
-    _controller
-        ?.getTitle()
-        .then((String? title) => _title.value = title ?? _title.value);
+    _controller?.getTitle().then((String? title) => _title.value = title ?? _title.value);
   }
 
   void _updateProgress(int progress) {
@@ -94,8 +90,7 @@ class _WebPageState extends State<WebPage> {
       onPageStarted: _onPageChanged,
       onPageFinished: _onPageChanged,
       onProgress: _updateProgress,
-      onWebViewCreated: (WebViewController controller) =>
-          _controller = controller,
+      onWebViewCreated: (WebViewController controller) => _controller = controller,
     );
     if (_arguments.withProgressBar) {
       child = Stack(

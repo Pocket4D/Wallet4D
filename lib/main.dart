@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'constants/routes.dart';
@@ -32,6 +33,8 @@ class WalletApp extends StatelessWidget {
     return MaterialApp(
       title: 'Wallet4D',
       theme: ThemeData(primarySwatch: const Color(0xff0096A6).swatch),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: const HomePage(),
       routes: routes,
     );

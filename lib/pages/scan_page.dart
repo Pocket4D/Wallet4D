@@ -7,7 +7,7 @@ import 'web_page.dart';
 class ScanPage extends StatefulWidget {
   const ScanPage({Key? key}) : super(key: key);
 
-  static const String routeName = 'wallet4d://scan-page';
+  static const String routeName = 'wallet4d://scan';
 
   @override
   _ScanPageState createState() => _ScanPageState();
@@ -31,11 +31,7 @@ class _ScanPageState extends State<ScanPage> {
       result.code.logD();
       if (WebPage.linkRegExp.hasMatch(result.code)) {
         await controller.pauseCamera();
-        final String _url = WebPage.linkRegExp
-            .allMatches(result.code)
-            .first
-            .group(0)
-            .toString();
+        final String _url = WebPage.linkRegExp.allMatches(result.code).first.group(0).toString();
         Navigator.of(context).pushNamed(
           WebPage.routeName,
           arguments: WebPageArguments(url: _url),

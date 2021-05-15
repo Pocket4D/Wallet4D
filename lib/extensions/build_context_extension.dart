@@ -1,6 +1,8 @@
 part of 'extensions.dart';
 
 extension BuildContextExtension on BuildContext {
+  AppLocalizations get localizations => AppLocalizations.of(this)!;
+
   MediaQueryData get mediaQuery => MediaQuery.of(this);
 
   NavigatorState get navigator => Navigator.of(this);
