@@ -10,6 +10,16 @@ part 'app_registry.g.dart';
 
 @HiveType(typeId: 0)
 class DownloadLink {
+  DownloadLink();
+
+  factory DownloadLink.fromJson(Map<String, dynamic> json) => DownloadLink()
+    ..browser = json['browser'] as String
+    ..ios = json['ios'] as String
+    ..android = json['android'] as String
+    ..mac = json['mac'] as String
+    ..windows = json['windows'] as String
+    ..linux = json['linux'] as String;
+
   @HiveField(0)
   late String browser;
 
@@ -31,6 +41,12 @@ class DownloadLink {
 
 @HiveType(typeId: 1)
 class DeepLink {
+  DeepLink();
+
+  factory DeepLink.fromJson(Map<String, dynamic> json) => DeepLink()
+    ..native = json['native'] as String
+    ..universal = json['universal'] as String;
+
   @HiveField(0)
   late String native;
 
@@ -40,6 +56,12 @@ class DeepLink {
 
 @HiveType(typeId: 2)
 class MetaData {
+  MetaData();
+
+  factory MetaData.fromJson(Map<String, dynamic> json) => MetaData()
+    ..shortName = json['shortName'] as String
+    ..colors = (json['colors'] as List<Map<String, dynamic>>).map((it) => Color.fromJson(it)).toList();
+
   @HiveField(0)
   late String shortName;
 
@@ -49,6 +71,12 @@ class MetaData {
 
 @HiveType(typeId: 3)
 class Color {
+  Color();
+
+  factory Color.fromJson(Map<String, dynamic> json) => Color()
+    ..primary = json['primary'] as String
+    ..secondary = json['secondary'] as String;
+
   @HiveField(0)
   late String primary;
 
@@ -58,6 +86,18 @@ class Color {
 
 @HiveType(typeId: 4)
 class AppEntry {
+  AppEntry();
+
+  factory AppEntry.fromJson(Map<String, dynamic> json) => AppEntry()
+    ..id = json['id'] as String
+    ..name = json['name'] as String
+    ..homePage = json['homepage'] as String
+    ..chains = json['chains'] as List<String>
+    ..app = DownloadLink.fromJson(json['app'] as Map<String, dynamic>)
+    ..mobile = DeepLink.fromJson(json['mobile'] as Map<String, dynamic>)
+    ..desktop = DeepLink.fromJson(json['desktop'] as Map<String, dynamic>)
+    ..metaData = MetaData.fromJson(json['metaData'] as Map<String, dynamic>);
+
   @HiveField(0)
   late String id;
 
@@ -85,6 +125,11 @@ class AppEntry {
 
 @HiveType(typeId: 5)
 class AppRegistry {
+  AppRegistry();
+
+  factory AppRegistry.fromJson(Map<String, dynamic> json) => AppRegistry()
+    ..apps = <String, AppEntry>{json.keys.first: AppEntry.fromJson(json.values.first as Map<String, dynamic>)};
+
   @HiveField(0)
   late Map<String, AppEntry> apps;
 }
