@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_registry.dart';
+part of 'app_entry.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -8,7 +8,7 @@ part of 'app_registry.dart';
 
 class DownloadLinkAdapter extends TypeAdapter<DownloadLink> {
   @override
-  final int typeId = 0;
+  final int typeId = 10;
 
   @override
   DownloadLink read(BinaryReader reader) {
@@ -56,7 +56,7 @@ class DownloadLinkAdapter extends TypeAdapter<DownloadLink> {
 
 class DeepLinkAdapter extends TypeAdapter<DeepLink> {
   @override
-  final int typeId = 1;
+  final int typeId = 11;
 
   @override
   DeepLink read(BinaryReader reader) {
@@ -92,7 +92,7 @@ class DeepLinkAdapter extends TypeAdapter<DeepLink> {
 
 class MetaDataAdapter extends TypeAdapter<MetaData> {
   @override
-  final int typeId = 2;
+  final int typeId = 12;
 
   @override
   MetaData read(BinaryReader reader) {
@@ -128,7 +128,7 @@ class MetaDataAdapter extends TypeAdapter<MetaData> {
 
 class ColorAdapter extends TypeAdapter<Color> {
   @override
-  final int typeId = 3;
+  final int typeId = 13;
 
   @override
   Color read(BinaryReader reader) {
@@ -164,7 +164,7 @@ class ColorAdapter extends TypeAdapter<Color> {
 
 class AppEntryAdapter extends TypeAdapter<AppEntry> {
   @override
-  final int typeId = 4;
+  final int typeId = 14;
 
   @override
   AppEntry read(BinaryReader reader) {
@@ -180,13 +180,14 @@ class AppEntryAdapter extends TypeAdapter<AppEntry> {
       ..app = fields[4] as DownloadLink
       ..mobile = fields[5] as DeepLink
       ..desktop = fields[6] as DeepLink
-      ..metaData = fields[7] as MetaData;
+      ..metaData = fields[7] as MetaData
+      ..lastOpenedAt = fields[8] as DateTime;
   }
 
   @override
   void write(BinaryWriter writer, AppEntry obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -202,7 +203,9 @@ class AppEntryAdapter extends TypeAdapter<AppEntry> {
       ..writeByte(6)
       ..write(obj.desktop)
       ..writeByte(7)
-      ..write(obj.metaData);
+      ..write(obj.metaData)
+      ..writeByte(8)
+      ..write(obj.lastOpenedAt);
   }
 
   @override
@@ -212,38 +215,6 @@ class AppEntryAdapter extends TypeAdapter<AppEntry> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is AppEntryAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-class AppRegistryAdapter extends TypeAdapter<AppRegistry> {
-  @override
-  final int typeId = 5;
-
-  @override
-  AppRegistry read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return AppRegistry()..apps = (fields[0] as Map).cast<String, AppEntry>();
-  }
-
-  @override
-  void write(BinaryWriter writer, AppRegistry obj) {
-    writer
-      ..writeByte(1)
-      ..writeByte(0)
-      ..write(obj.apps);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AppRegistryAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

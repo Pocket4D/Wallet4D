@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'src/constants/routes.dart';
@@ -12,7 +14,11 @@ import 'src/pages/home_page.dart';
 
 void main() {
   runZonedGuarded(
-    () => runApp(const WalletApp()),
+    () async {
+      await Hive.initFlutter();
+
+      runApp(const WalletApp());
+    },
     (error, stackTrace) {
       'Error caught in runZonedGuarded: $error'.logE(stackTrace: stackTrace);
     },
@@ -31,7 +37,7 @@ class WalletApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Wallet4D',
+      title: context.localizations.wallet4D,
       theme: ThemeData(primarySwatch: const Color(0xff0096A6).swatch),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
